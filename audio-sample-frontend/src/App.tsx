@@ -1,25 +1,25 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import SpeechRecognition, { useSpeechRecognition } from 'react-speech-recognition';
 
 function App() {
-  new webkitSpeechRecognition()
+  navigator.mediaDevices.getUserMedia({
+    audio: {advanced: [{echoCancellation: true}]}
+  })
+  const {
+    transcript,
+    listening,
+    resetTranscript,
+    browserSupportsSpeechRecognition
+  } = useSpeechRecognition();
+  console.log(listening)
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <button onClick={e => SpeechRecognition.startListening({ continuous: true })}>Start</button>
+      <button onClick={e => SpeechRecognition.stopListening()}>Stop</button>
+      <div>listening: {listening ? 'on' : 'off'}</div>
+      <div>ブラウザ対応: {browserSupportsSpeechRecognition ? 'yes' : 'no'}</div>
+      <p>{transcript}</p>
     </div>
   );
 }
