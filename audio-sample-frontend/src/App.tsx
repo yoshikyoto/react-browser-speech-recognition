@@ -19,7 +19,7 @@ function App() {
   const [finalizedPointer, setFinalizedPointer] = useState<number>(0);
 
   useEffect(() => {
-    const timer = setTimeout(() => {
+    setTimeout(() => {
       if (finalTranscript.length !== finalizedPointer) {
         const updated = finalTranscript.slice(finalizedPointer)
         setDocument(document + "\n\n" + updated)
@@ -58,11 +58,11 @@ function App() {
       <h2>エディタ</h2>
       <p>音声認識が確定したものがテキストボックスに追加されていきます</p>
       <div>
-        <textarea 
-          value={document} 
+        <textarea
+          value={document}
           onChange={e => setDocument(e.target.value)}
           style={{width:640, height:400}}>
-        
+
         </textarea>
       </div>
     </div>
