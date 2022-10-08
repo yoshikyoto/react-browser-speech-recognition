@@ -3,10 +3,6 @@ import './App.css';
 import SpeechRecognition, { useSpeechRecognition } from 'react-speech-recognition';
 
 function App() {
-  // echoCancellation したものを useSpeechRecognition に渡すことができないらしい
-  navigator.mediaDevices.getUserMedia({
-    audio: {advanced: [{echoCancellation: true}]}
-  })
   const {
     transcript,
     finalTranscript,

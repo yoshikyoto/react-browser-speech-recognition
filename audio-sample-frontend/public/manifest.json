@@ -1,6 +1,6 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "音声文字起こし",
+  "name": "音声文字起こし",
   "icons": [
     {
       "src": "favicon.ico",
