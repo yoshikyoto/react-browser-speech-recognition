@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import './App.css';
-import SpeechRecognition, { useSpeechRecognition } from 'react-speech-recognition';
 
 function App() {
   const [mediaRecorder, setMediaRecorder] = useState<MediaRecorder|null>(null)
@@ -9,7 +8,11 @@ function App() {
   const startRecording = () => {
     console.log("start recording")
     navigator.mediaDevices.getUserMedia({
-      audio: {advanced: [{echoCancellation: true}]}
+      audio: {advanced: [{
+        noiseSuppression: true,
+        echoCancellation: true,
+        suppressLocalAudioPlayback: true,
+      }]}
     }).then((stream) => {
       console.log("then stream")
       const mediaRecorder = new MediaRecorder(stream)
